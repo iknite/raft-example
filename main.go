@@ -151,7 +151,7 @@ func main() {
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 
-		kv := &wal.KVData{Key: rand.RandomString(10), Val: rand.RandomString(10000)}
+		kv := &wal.KVData{Key: rand.RandomString(10), Val: rand.RandomString(1000)}
 		data, err := json.Marshal(kv)
 		if err != nil {
 			panic(err)
@@ -159,7 +159,7 @@ func main() {
 
 		_, err = nh.SyncPropose(ctx, cs, data)
 		if err != nil {
-			log.Fatalf("SyncPropose returned error %v\n", err)
+			http.Error(w, "SyncPropose returned error", http.StatusInternalServerError)
 		} else {
 			log.Printf("--------------- get %s -------", kv.Key)
 		}
