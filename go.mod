@@ -16,6 +16,7 @@ require (
 	github.com/lni/dragonboat v2.1.1-0.20190509074619-54b5e2a4f3d1+incompatible
 	github.com/lni/dragonboat-example v2.0.1-0.20190507050322-d05e38ad7deb+incompatible
 	github.com/peterbourgon/g2s v0.0.0-20170223122336-d4e7ad98afea // indirect
+	github.com/stretchr/testify v1.3.0 // indirect
 	github.com/tecbot/gorocksdb v0.0.0-20181010114359-8752a9433481
 	golang.org/x/net v0.0.0-20190318221613-d196dffd7c2b // indirect
 	google.golang.org/grpc v1.19.0 // indirect

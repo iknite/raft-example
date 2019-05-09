@@ -13,5 +13,5 @@ for pid in ${pids[*]}; do
     wait $pid
 done
 
-rm -rf raft-example.db
+rm -rf example-data
 

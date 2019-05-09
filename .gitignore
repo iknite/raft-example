@@ -32,3 +32,4 @@ coverage.txt
 *terraform.tfvars*
 
 raft-example.db
+example-data
