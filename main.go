@@ -17,7 +17,6 @@ import (
 	"time"
 
 	"github.com/iknite/raft-example/rand"
-	"github.com/iknite/raft-example/wal"
 	"github.com/lni/dragonboat"
 	"github.com/lni/dragonboat-example/utils"
 	"github.com/lni/dragonboat/config"
@@ -120,7 +119,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	if err := nh.StartOnDiskCluster(peers, *join, wal.NewDiskKV, rc); err != nil {
+	if err := nh.StartOnDiskCluster(peers, *join, NewDiskKV, rc); err != nil {
 		fmt.Fprintf(os.Stderr, "failed to add cluster, %v\n", err)
 		os.Exit(1)
 	}
@@ -151,7 +150,7 @@ func main() {
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 
-		kv := &wal.KVData{Key: rand.RandomString(10), Val: rand.RandomString(1000)}
+		kv := &KVData{Key: rand.RandomString(10), Val: rand.RandomString(1000)}
 		data, err := json.Marshal(kv)
 		if err != nil {
 			panic(err)
@@ -193,7 +192,7 @@ func main() {
 				}
 				ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 				if rt == PUT {
-					kv := &wal.KVData{
+					kv := &KVData{
 						Key: key,
 						Val: val,
 					}
